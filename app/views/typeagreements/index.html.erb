@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>Listado de denominaciones</h1>
+<div class="row">
+	<div class="col-md-2"><%=link_to "Nueva denominación",new_typeagreement_path%></div>
+</div>
+<hr>
+<ul>
+<%Typeagreement.all.each do |ta|%>
+	<li><%=ta.denominacion%>&nbsp&nbsp<%=link_to "editar", edit_typeagreement_path(ta.id)%></li>
+<%end%>
+</ul>
+</body>
+</html>

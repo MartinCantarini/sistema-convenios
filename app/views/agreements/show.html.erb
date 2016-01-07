@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Convenio
+	</title>
+</head>
+<body>
+	<h1>Convenio: <%=@convenio.expediente%></h1><br>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-6">
+		<div class="col-md-2"><%=link_to "Editar",edit_agreement_path(@convenio.id)%></div>
+		<div class="col-md-2"><%=link_to "Eliminar",delete_agreement_path(@convenio.id)%></div>
+		<div class="col-md-3"><%=link_to "Exportar .pdf","#"%></div>
+	</div>
+	</div>
+	<hr size="50">
+	<div class="row">
+	<div class="col-md-12"><subtitulo>Información general</subtitulo><br><br></div>
+		<div class="col-md-4"><label>Contacto:</label> <p style="text-align:justify"><%=@convenio.contacto%></p></div>
+		<div class="col-md-4"><label>Fecha de firma:</label> <p style="text-align:justify"><%=@convenio.fechadefirma%></p></div>
+		<div class="col-md-4"><label>Decreto/Resolución:</label> <p style="text-align:justify"><%=@convenio.decreto%></p></div><br><br><br><br>
+	</div>
+	<div class="row">
+		<div class="col-md-4"><label>Denominación: </label><p style="text-align:justify"><%=@convenio.denominacion%></p></div>
+		<div class="col-md-4"><label>Compromiso económico: </label><p style="text-align:justify"><%=@convenio.compromisoeconomico%></div>
+		<div class="col-md-4"><label>Duración: </label><p style="text-align:justify"><%=@convenio.duracion%></p></div><br><br>
+	</div>
+	<div class="row">
+		<div class="col-md-4"><label>Estado: </label><p style="text-align:justify"><%=@convenio.estado%></p></div><br><br>
+	</div>
+	<div class="row">
+		<div class="col-md-6"><label>Objeto:</label> <br><p style="text-align:justify"><%=@convenio.objeto%><p></div>
+		<div class="col-md-6"><label>Observaciones: </label><br><p style="text-align:justify"><%=@convenio.observaciones%><p></div><br><br>
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	<br><br><subtitulo>Firmantes</subtitulo><br><br>
+	</div>
+	<div class="col-md-10">	
+		<%@firmantes=Signature.getFirmantes(@convenio.id)%>
+		<%if !@firmantes.empty?%>
+			<table class="table table-bordered">
+				<tr>
+					<th>Firmante</th>
+					<th>Fecha</th>
+					<th><%=link_to "Agregar un nuevo firmante", new_signature_path(@convenio.id), :class => "btn btn-primary btn-sm"%>	</th>
+				</tr>
+				
+				<%@firmantes.all.each do |f|%>
+				<tr>
+						<td><%=f.firmante%></td>
+						<td><%=f.fecha%></td>
+						<td><%=link_to "Editar", edit_signature_path(f.id)%>&nbsp|&nbsp<%=link_to "Eliminar", delete_signature_path(f.id)%></td>
+					<%end%>
+				</tr>
+			</table>
+		<%else%>
+			<div class="alert alert-danger" role="alert"><%="Este convenio no presenta firmantes"%>&nbsp&nbsp&nbsp<%=link_to "Agregar un nuevo firmante", new_signature_path(@convenio.id)%>	</div>
+		<%end%>		
+	</div>	
+	</div>
+	<div class="row">
+	<div class="col-md-12">
+	<br><br><subtitulo>Seguimiento</subtitulo><br><br>
+	</div>
+	<div class="col-md-10">	
+		<%@seguimientos=Tracing.getSeguimientos(@convenio.id)%>
+		<%if !@seguimientos.empty?%>
+			<table class="table table-bordered">
+				<tr>
+					<th>Estado</th>
+					<th>Fecha</th>
+					<th><%=link_to "Agregar un nuevo movimiento", new_tracing_path(@convenio.id), :class => "btn btn-primary btn-sm"%>	</th>
+				</tr>
+				
+				<%@seguimientos.all.each do |s|%>
+				<tr>
+						<td><%=s.estado%></td>
+						<td><%=s.fecha%></td>
+						<td><%=link_to "Editar", edit_tracing_path(s.id)%>&nbsp|&nbsp<%=link_to "Eliminar", delete_tracing_path(s.id)%></td>
+					<%end%>
+				</tr>
+			</table>
+		<%else%>
+			<div class="alert alert-danger" role="alert"><%="Este convenio no presenta movimientos"%>&nbsp&nbsp&nbsp<%=link_to "Agregar un nuevo movimiento", new_tracing_path(@convenio.id)%>	</div>
+		<%end%>		
+	</div>	
+	</div>
+	
+</body>
+</html>

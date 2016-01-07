@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<%= bootstrap_form_for(@firmante) do |f| %>
+  <%= f.text_field :firmante %>
+  <%= f.date_select :fecha %>
+  <%if @vista=="new"%>
+  	<%= f.hidden_field :agreement_id, value: params[:format] %>
+  <%end%>
+  <%= f.submit "Agregar" %>
+<% end %>
+
+</body>
+</html>

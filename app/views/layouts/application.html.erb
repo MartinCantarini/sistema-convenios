@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sistconvenios</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">CIC</a>
+    </div>
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a href="/admin">Panel de administrador</a></li>  
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/users/sign_up">Sign Up</a></li>
+        <li><a href="/users/sign_in">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<body>
+<br><br>
+<div class="container">
+<br>
+<%if notice%>
+<div class="alert alert-success" role="alert"><%=flash[:notice]%></div>
+<%end%>
+<%if alert%>
+<div class="alert alert-danger" role="alert"><%=flash[:alert]%></div>
+<%end%>
+<%= yield %>
+</div>
+</body>
+</html>
