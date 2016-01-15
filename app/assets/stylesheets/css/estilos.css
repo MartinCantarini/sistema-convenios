@@ -1,12 +1,5 @@
 
-
-h3{
-	color:blue;
-	background-color: #ccc;
-}
-
 hr{
- 
    
     border-style: inset;
     border-width: 1px;
@@ -23,7 +16,12 @@ subtitulo{
 }
 
 th{
-	background-color: #A4A4A4
+	background-color: #B9CBAB;
+	text-align: center;
+}
+td{
+	background-color:#ACC8DE;
+	text-align: center;
 }
 
 label{
@@ -35,7 +33,7 @@ label{
 #menu1 {
  width: 190px;
  margin: 0;
-        padding: 0;
+ padding: 0;
 }
 #menu1 ul {
  list-style: none;
@@ -46,31 +44,28 @@ label{
  height: 32px;
  font-family: Arial, Verdana, sans-serif;
  margin: 0;
- font-size: 12px;
+ font-size: 24px;
  font-weight: bold;
  background: #FFF;
- height: 24px;
+ height: 48px;
  text-decoration: none;
  }
  #menu1 li a:hover {
- width: 180px;
- color: #003F57;
- border-radius: 0 5px 5px 0;
+ color: black;
  background: #57D0FF;
- padding: 7px 0 0 20px;
+ border-radius: 5px 5px 5px 5px;
 }
-#menu1 li a:link, #menu1 li a:visited{
- width: 190px;
- color: #FFFFFF;
- display: block;
- background: #00B7FF;
- border-top: 1px solid #FFFFFF;
- border-bottom: 1px solid #00425B;
- border-radius: 0 5px 5px 0;
- padding: 7px 0 0 20px;
+
+td a{
+	
+	color: black;
 }
-#menu1 li #current, #menu1 li a:active{
- color: #FFFFFF;
- background: #FF4400;
- padding: none;
+
+td a:hover{
+	background-color: white;
+	color: black;
+	font-weight: bold;
+}
+.searchform{
+	background-color: #A4A4A4;
 }

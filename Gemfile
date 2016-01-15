@@ -46,5 +46,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+gem 'cancan'
 
 gem 'bootstrap_form'
+
+gem 'kaminari'
+
+gem 'prawn', '~> 2.0', '>= 2.0.2'
+gem 'prawn-table'

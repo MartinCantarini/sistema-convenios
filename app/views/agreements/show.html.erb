@@ -8,9 +8,11 @@
 	<h1>Convenio: <%=@convenio.expediente%></h1><br>
 	<div class="row">
 		<div class="col-md-6 col-md-offset-6">
+		<%if can? :edit, Agreement%>
 		<div class="col-md-2"><%=link_to "Editar",edit_agreement_path(@convenio.id)%></div>
 		<div class="col-md-2"><%=link_to "Eliminar",delete_agreement_path(@convenio.id)%></div>
-		<div class="col-md-3"><%=link_to "Exportar .pdf","#"%></div>
+		<%end%>
+		<div class="col-md-3"><%=link_to "Exportar .pdf","/agreements/#{@convenio.id}.pdf"%></div>
 	</div>
 	</div>
 	<hr size="50">
@@ -29,8 +31,9 @@
 		<div class="col-md-4"><label>Estado: </label><p style="text-align:justify"><%=@convenio.estado%></p></div><br><br>
 	</div>
 	<div class="row">
-		<div class="col-md-6"><label>Objeto:</label> <br><p style="text-align:justify"><%=@convenio.objeto%><p></div>
-		<div class="col-md-6"><label>Observaciones: </label><br><p style="text-align:justify"><%=@convenio.observaciones%><p></div><br><br>
+		<div class="col-md-6"><label>Objeto:</label><br><textarea style="width: 500px;height:150px;text-align:justify;border-color:white;"><%=@convenio.objeto%></textarea></div>
+		
+		<div class="col-md-6"><label>Observaciones: </label><br><textarea style="width: 500px;height:150px;text-align:justify;;border-color:white;"><%=@convenio.observaciones%></textarea></div><br><br>
 	</div>
 	<div class="row">
 	<div class="col-md-12">
@@ -43,19 +46,33 @@
 				<tr>
 					<th>Firmante</th>
 					<th>Fecha</th>
-					<th><%=link_to "Agregar un nuevo firmante", new_signature_path(@convenio.id), :class => "btn btn-primary btn-sm"%>	</th>
+					<th>
+
+					<%if can? :new, Signature%>
+						<%=link_to '<img src="/images/agregar.png" alt="Agregar firmante"/>'.html_safe, new_signature_path(@convenio.id)%>	
+					<%end%>
+
+					</th>
 				</tr>
 				
 				<%@firmantes.all.each do |f|%>
 				<tr>
 						<td><%=f.firmante%></td>
 						<td><%=f.fecha%></td>
-						<td><%=link_to "Editar", edit_signature_path(f.id)%>&nbsp|&nbsp<%=link_to "Eliminar", delete_signature_path(f.id)%></td>
+						<td>
+						<%if can? :edit, Signature%>
+							<%=link_to '<img src="/images/edit.png" alt="Editar firmante"/>'.html_safe, edit_signature_path(f.id)%>&nbsp&nbsp&nbsp<%=link_to '<img src="/images/delete.png" alt="Eliminar firmante"/>'.html_safe, delete_signature_path(f.id)%>
+						<%end%>
+						</td>
 					<%end%>
 				</tr>
 			</table>
 		<%else%>
-			<div class="alert alert-danger" role="alert"><%="Este convenio no presenta firmantes"%>&nbsp&nbsp&nbsp<%=link_to "Agregar un nuevo firmante", new_signature_path(@convenio.id)%>	</div>
+			<div class="alert alert-danger" role="alert"><%="Este convenio no presenta firmantes"%>&nbsp&nbsp&nbsp
+			<%if can? :new, Signature%>
+				<%=link_to "Agregar un nuevo firmante", new_signature_path(@convenio.id)%>
+			<%end%>
+			</div>
 		<%end%>		
 	</div>	
 	</div>
@@ -70,19 +87,31 @@
 				<tr>
 					<th>Estado</th>
 					<th>Fecha</th>
-					<th><%=link_to "Agregar un nuevo movimiento", new_tracing_path(@convenio.id), :class => "btn btn-primary btn-sm"%>	</th>
+					<th>
+					<%if can? :new, Tracing%>
+						<%=link_to '<img src="/images/agregar.png" alt="Agregar movimiento"/>'.html_safe, new_tracing_path(@convenio.id)%>	
+					<%end%>
+					</th>
 				</tr>
 				
 				<%@seguimientos.all.each do |s|%>
 				<tr>
 						<td><%=s.estado%></td>
 						<td><%=s.fecha%></td>
-						<td><%=link_to "Editar", edit_tracing_path(s.id)%>&nbsp|&nbsp<%=link_to "Eliminar", delete_tracing_path(s.id)%></td>
+						<td>
+						<%if can? :edit, Tracing%>
+							<%=link_to '<img src="/images/edit.png" alt="Editar seguimiento"/>'.html_safe, edit_tracing_path(s.id)%>&nbsp&nbsp&nbsp<%=link_to '<img src="/images/delete.png" alt="Eliminar seguimiento"/>'.html_safe, delete_tracing_path(s.id)%>
+						<%end%>
+						</td>	
 					<%end%>
 				</tr>
 			</table>
 		<%else%>
-			<div class="alert alert-danger" role="alert"><%="Este convenio no presenta movimientos"%>&nbsp&nbsp&nbsp<%=link_to "Agregar un nuevo movimiento", new_tracing_path(@convenio.id)%>	</div>
+			<div class="alert alert-danger" role="alert"><%="Este convenio no presenta movimientos"%>&nbsp&nbsp&nbsp
+			<%if can? :new, Tracing%>	
+				<%=link_to "Agregar un nuevo movimiento", new_tracing_path(@convenio.id)%>	
+			<%end%>
+			</div>
 		<%end%>		
 	</div>	
 	</div>

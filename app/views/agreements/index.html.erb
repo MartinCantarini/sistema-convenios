@@ -6,26 +6,60 @@
 <body>
 <h1>Listado de convenios</h1>
 <hr size="50">
-<%=link_to "Nuevo convenio", new_agreement_path, :class => "btn btn-primary btn-sm"%>
+<h3>Busqueda de convenios</h3>
+<div class="searchform">
+<%= form_tag(agreements_path, :method => "get", id: "search-form") do %>
+	<%=label_tag "Fechas: "%><br>
+	<%= date_field_tag :search1, params[:search1], placeholder: "Fecha inicial"%>
+	<%= date_field_tag :search2, params[:search2], placeholder: "Fecha final"%><br>
+	<%=label_tag "Otros campos: "%><br>
+	<%= text_field_tag :search3, params[:search3], placeholder: "Número de expediente"%>
+	<%= text_field_tag :search4, params[:search4], placeholder: "Denominación", :autocomplete => :off%>
+	<%= text_field_tag :search5, params[:search5], placeholder: "Firmante"%><br><br>
+	<%= submit_tag "Buscar" %>
+<% end %>
+<hr size="50">
+</div>
+<% if can? :new, Agreement %>
+	<%=link_to "Nuevo convenio", new_agreement_path, :class => "btn btn-primary btn-sm"%>
+<%end%>
 <table class="table table-bordered">
 <tr>
 	<th>Nro. expediente</th>
-	<th>Contacto</th>
+	<th>Firmantes</th>
 	<th>Fecha de firma</th>
-	<th>Compromiso económico</th>
-	<th>Estado</th>
+	<th>Denominación</th>
+	<th>Estado actual</th>
 	<th>Decreto</th>
 </tr>
-<%Agreement.all.each do |convenio|%>
+<%@convenios.all.each do |convenio|%>
 <tr>
 	<td><%=link_to convenio.expediente, agreement_path(convenio.id)%></td>
-	<td><%=convenio.contacto%></td>
+	<%@firmas=Signature.getFirmantes(convenio.id)%>
+	<td>
+		<ul>
+		<%@firmas.each do |firma|%>
+			<%=firma.firmante%>(<%=firma.fecha%>)<br>
+		<%end%>
+		</ul>
+	</td>
 	<td><%=convenio.fechadefirma%></td>
-	<td><%=convenio.compromisoeconomico%></td>
-	<td><%=convenio.estado%></td>
+	<td><%=convenio.denominacion%></td>
+
+		<%if convenio.tracings.blank? %>
+			<td></td>
+		<%else%>	
+			<%@ultimomov=Tracing.where(agreement_id: convenio.id)%>
+			
+			<td>
+			<%=@ultimomov.order('fecha').last.estado%><br>
+			(<%=@ultimomov.order('fecha').last.fecha%>)
+			</td>
+		<%end%>
 	<td><%=convenio.decreto%></td>
 </tr>	
 <%end%>
 </table>
+<%= paginate @convenios %>
 </body>
 </html>

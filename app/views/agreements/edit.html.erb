@@ -5,21 +5,8 @@
 </head>
 <body>
 <h1>Editar convenio</h1>
-<p>Por favor complete los siguientes campos para modificar el convenio</p>
-<%= bootstrap_form_for(@convenio) do |f| %>
-  <%= f.text_field :expediente %>
-  <%= f.text_field :contacto %>
-  SELECCION DE FIRMANTES:
-  <%= f.text_field :fechadefirma %>
-  DENOMINACION:
-  <%= f.text_area :objeto %>
-  <%= f.text_field :compromisoeconomico %>
-  <%= f.text_field :duracion %>
-  <%= f.text_field :estado %>
-  <%= f.text_field :decreto %>
-  <%= f.text_area :observaciones %>
-  <%= f.submit "Agregar" %>
-<% end %>
+<p>Por favor complete los siguientes campos para modificar el convenio, los campos con "*" son obligatorios</p>
+<%=render 'form'%>
 
 </body>
 </html>

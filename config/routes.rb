@@ -1,14 +1,25 @@
 Rails.application.routes.draw do
- 
   devise_for :users
   resources :agreements
   resources :typeagreements
   resources :signatures
   resources :tracings
+
+  get 'otros/view1'
+
+  get 'otros/view2'
+
+  get 'otros/view3'
+
+  get 'otros/view4'
+
+  get 'otros/view5'
+
   get 'admin' => 'agreements#admin'
   get 'agreements/:id/delete' => 'agreements#destroy', as: :delete_agreement
   get 'signatures/:id/delete' => 'signatures#destroy', as: :delete_signature
   get 'tracings/:id/delete' => 'tracings#destroy', as: :delete_tracing
+  #get 'users/sign_out_out' => 'sessions#destroy', as: :delete_session
  # source :agreements
 
   # The priority is based upon order of creation: first created -> highest priority.

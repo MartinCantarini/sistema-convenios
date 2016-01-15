@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sistconvenios</title>
+  <title>Sist. Interno</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -9,15 +9,20 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">CIC</a>
+      <a class="navbar-brand" href="/">Sistema interno CIC</a>
     </div>
     <div>
       <ul class="nav navbar-nav">
-        <li><a href="/admin">Panel de administrador</a></li>  
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/sign_up">Sign Up</a></li>
-        <li><a href="/users/sign_in">Login</a></li>
+      
+        <%if user_signed_in?%>
+          <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>
+        <%else%>
+          <li><a href="/users/sign_up">Registrarse</a></li>
+          <li><a href="/users/sign_in">Iniciar Sesión</a></li>
+        <%end%>
       </ul>
     </div>
   </div>

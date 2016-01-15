@@ -5,13 +5,14 @@
 </head>
 <body>
 <%= bootstrap_form_for(@firmante) do |f| %>
-  <%= f.text_field :firmante %>
-  <%= f.date_select :fecha %>
+<div class="row">
+  <div class="col-md-8"><%= f.text_field :firmante, required:"required" ,label:"Firmante",style:'text-transform:uppercase' %></div>
+  <div class="col-md-4"><%= f.date_field :fecha ,label:"Fecha de firma"%></div>
   <%if @vista=="new"%>
   	<%= f.hidden_field :agreement_id, value: params[:format] %>
   <%end%>
-  <%= f.submit "Agregar" %>
+  <div class="col-md-12"><center><%= f.submit "Agregar" %></center></div>
+</div>
 <% end %>
-
 </body>
 </html>
