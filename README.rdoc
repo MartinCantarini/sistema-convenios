@@ -1,1 +1,6 @@
-<h2>Sistema de interno - Comisión de Investigaciones Científicas</h2>
+Sistema de interno - Comisión de Investigaciones Científicas
+
+El sistema cuenta con los siguientes subsistemas:
+
+<tt>Sistema de Convenios</tt>
+<tt>Sistema de Seguimiento de Expedientes</tt>
