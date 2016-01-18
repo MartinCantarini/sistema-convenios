@@ -58,7 +58,7 @@
 				<%@firmantes.all.each do |f|%>
 				<tr>
 						<td><%=f.firmante%></td>
-						<td><%=f.fecha%></td>
+						<td><%=f.fecha.day%>/<%=f.fecha.month%>/<%=f.fecha.year%></td>
 						<td>
 						<%if can? :edit, Signature%>
 							<%=link_to '<img src="/images/edit.png" alt="Editar firmante"/>'.html_safe, edit_signature_path(f.id)%>&nbsp&nbsp&nbsp<%=link_to '<img src="/images/delete.png" alt="Eliminar firmante"/>'.html_safe, delete_signature_path(f.id)%>
@@ -97,7 +97,7 @@
 				<%@seguimientos.all.each do |s|%>
 				<tr>
 						<td><%=s.estado%></td>
-						<td><%=s.fecha%></td>
+						<td><%=s.fecha.day%>/<%=s.fecha.month%>/<%=s.fecha.year%></td>
 						<td>
 						<%if can? :edit, Tracing%>
 							<%=link_to '<img src="/images/edit.png" alt="Editar seguimiento"/>'.html_safe, edit_tracing_path(s.id)%>&nbsp&nbsp&nbsp<%=link_to '<img src="/images/delete.png" alt="Eliminar seguimiento"/>'.html_safe, delete_tracing_path(s.id)%>

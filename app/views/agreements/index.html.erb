@@ -43,7 +43,7 @@
 		<%end%>
 		</ul>
 	</td>
-	<td><%=convenio.fechadefirma%></td>
+	<td><%=convenio.fechadefirma.day%>/<%=convenio.fechadefirma.month%>/<%=convenio.fechadefirma.year%></td>
 	<td><%=convenio.denominacion%></td>
 
 		<%if convenio.tracings.blank? %>
@@ -52,8 +52,10 @@
 			<%@ultimomov=Tracing.where(agreement_id: convenio.id)%>
 			
 			<td>
-			<%=@ultimomov.order('fecha').last.estado%><br>
-			(<%=@ultimomov.order('fecha').last.fecha%>)
+			<%lastmov=@ultimomov.order('fecha').last%>
+			<%=lastmov.estado%>
+			<br>
+			(<%=lastmov.fecha.day%>/<%=lastmov.fecha.month%>/<%=lastmov.fecha.year%>)
 			</td>
 		<%end%>
 	<td><%=convenio.decreto%></td>
