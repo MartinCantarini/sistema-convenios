@@ -11,7 +11,7 @@ class ReportPdf < Prawn::Document
     move_down 20
     text "Fecha de firma:",:size=>15, :style => :bold
     move_down 5
-    text "#{convenio.fechadefirma}"
+    text "#{convenio.fechadefirma.day}/#{convenio.fechadefirma.month}/#{convenio.fechadefirma.year}"
     move_down 20
     text "Compromiso económico:",:size=>15, :style => :bold
     move_down 5
@@ -50,7 +50,7 @@ class ReportPdf < Prawn::Document
   def tabla_firmantes(convenio)
     firmantes=Signature.getFirmantes(convenio.id)
     firmantes.all.each do |f|
-      text "-#{f.firmante}(#{f.fecha})", :size=>15
+      text "-#{f.firmante}(#{f.fecha.day}/#{f.fecha.month}/#{f.fecha.year})", :size=>15
       move_down 15
     end 
   end
@@ -58,7 +58,7 @@ class ReportPdf < Prawn::Document
   def tabla_movimientos(convenio)
     movimientos=Tracing.getSeguimientos(convenio.id)
     movimientos.all.each do |m|
-      text "-#{m.estado}(#{m.fecha})", :size=>15
+      text "-#{m.estado}(#{m.fecha.day}/#{m.fecha.month}/#{m.fecha.year})", :size=>15
       move_down 15
     end 
   end

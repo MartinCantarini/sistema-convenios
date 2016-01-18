@@ -59,7 +59,7 @@ class AgreementsController < ApplicationController
   def index
     @convenios=Agreement.all.page(params[:page]).per(20)
     if (params[:search1] or params[:search2] or params[:search3] or params[:search4] or params[:search5])
-      @convenios = Agreement.search(params[:search1],params[:search2],params[:search3],params[:search4],params[:search5]).order("created_at DESC").page(params[:page]).per(5)
+      @convenios = Agreement.search(params[:search1],params[:search2],params[:search3],params[:search4],params[:search5]).order("created_at DESC").page(params[:page]).per(20)
     end
   end
 
