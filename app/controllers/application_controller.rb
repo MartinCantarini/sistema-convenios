@@ -5,6 +5,5 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
 	redirect_to root_url, alert: "Usted no tiene permiso para realizar la siguiente acción"
-  end
-
+  end       
 end

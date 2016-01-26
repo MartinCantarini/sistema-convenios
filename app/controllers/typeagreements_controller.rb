@@ -8,9 +8,14 @@ class TypeagreementsController < ApplicationController
     if @denominacion.save
       redirect_to typeagreements_url
       flash[:notice]="Denominación dada de alta con éxito"
+    elsif @denominacion.errors.messages.any? 
+      redirect_to typeagreements_url
+      @denominacion.errors.messages.each do |clave,registro|
+        flash[:alert]="-#{registro}".tr('[]"','')
+      end
     else
       redirect_to typeagreements_url
-      flash[:alert]="No se puede completar la acción en este momento, por favor intente nuevamente en unos segundos"
+      flash[:alert]="No se puede completar la acción en este momento, por favor intente nuevamente en unos segundos,#{}"
     end  
   end
 

@@ -1,4 +1,5 @@
 class AgreementsController < ApplicationController
+  load_and_authorize_resource :only => [:new, :edit, :destroy]
   def new
     @convenio=Agreement.new
   end
@@ -8,6 +9,11 @@ class AgreementsController < ApplicationController
     if @convenio.save
       redirect_to agreement_url(@convenio.id)
       flash[:notice]="Convenio dado de alta con éxito"
+    elsif @convenio.errors.messages.any?
+      redirect_to agreements_url
+      @convenio.errors.messages.each do |clave,registro|
+        flash[:alert]="#{registro}".tr('[]"','')  
+      end  
     else
       redirect_to agreements_url
       flash[:alert]="No se puede completar la acción en este momento, por favor intente nuevamente en unos segundos"
