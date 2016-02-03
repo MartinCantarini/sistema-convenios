@@ -71,7 +71,7 @@ class Agreement < ActiveRecord::Base
 			  	end	
 			  end
 			  where('id IN (?) AND denominacion LIKE ?',@firmante,"%#{search4}%")		     
-		
+			  	
 		elsif search1.blank? and search2.blank? and !search3.blank? and !search4.blank? and !search5.blank?#expediente, denominacion y firmante
 			  @firmante=Array.new;
 			  Signature.all.each do |fir|

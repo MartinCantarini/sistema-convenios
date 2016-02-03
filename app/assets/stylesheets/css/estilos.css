@@ -1,4 +1,6 @@
-
+body{
+	background-color: #eee;
+}
 hr{
    
     border-style: inset;
@@ -46,7 +48,7 @@ label{
  margin: 0;
  font-size: 24px;
  font-weight: bold;
- background: #FFF;
+ background: #eee;
  height: 48px;
  text-decoration: none;
  }
