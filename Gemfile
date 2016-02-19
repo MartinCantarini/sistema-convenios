@@ -55,3 +55,5 @@ gem 'kaminari'
 gem 'prawn', '~> 2.0', '>= 2.0.2'
 gem 'prawn-table'
 
+#Organize javascript
+gem 'paloma'

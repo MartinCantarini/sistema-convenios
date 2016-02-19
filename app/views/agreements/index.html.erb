@@ -2,26 +2,27 @@
 <html>
 <head>
 	<title>Convenios</title>
-	<script type="text/javascript">
-      $("#mostrar").click(function(){
-	      $('.searchform').show(2000);
-	      $('#mostrar').hide(1);
-	      $('#ocultar').show(1);
-      });
-      $("#ocultar").click(function(){
-	      $('.searchform').hide(2000);
-	      $('#ocultar').hide(1);
-	      $('#mostrar').show(1);
+    <%#= javascript_include_tag :searchbar%>
+    <script type="text/javascript">
+		    $("#mostrar").click(function(){
+        $(".searchform").show(3000);
+        $("#mostrar").hide();
+        $("#ocultar").show();
     });
-    </script>
+    $("#ocultar").click(function(){
+        $(".searchform").hide(3000);
+    	$("#ocultar").hide();
+    	$("#mostrar").show();
+    });
+	</script>
 </head>
 <body>
 <h1>Listado de convenios</h1>
 <hr size="50">
 <h3>Busqueda de convenios</h3>
-
 <input type="button" id="mostrar" name="boton1" value="Ver barra de busqueda">
 <input type="button" id="ocultar" name="boton2" value="Ocultar barra de busqueda" style="display:none;">
+
 <div class="searchform" style="display:none;">
 <%= form_tag(agreements_path, :method => "get", id: "search-form") do %>
 	<%=label_tag "Fechas: "%><br>
@@ -33,9 +34,8 @@
 	<%= text_field_tag :search5, params[:search5], placeholder: "Firmante"%><br><br>
 	<%= submit_tag "Buscar" %>
 <% end %>
-
-<hr size="50">
 </div>
+<hr size="50">
 <% if can? :new, Agreement %>
 	<%=link_to "Nuevo convenio", new_agreement_path, :class => "btn btn-primary btn-sm"%>
 <%end%>
@@ -45,8 +45,8 @@
 	<th>Firmantes</th>
 	<th class="hidden-xs hidden-sm ">Fecha de firma</th>
 	<th class="hidden-xs">Denominación</th>
-	<th class="hidden-xs hidden-sm hidden-md">Estado actual</th>
-	<th class="hidden-xs hidden-sm hidden-md">Decreto</th>
+	<th class="hidden-xs hidden-sm">Estado actual</th>
+	<th class="hidden-xs hidden-sm">Decreto</th>
 </tr>
 <%@convenios.all.each do |convenio|%>
 <tr>
@@ -63,18 +63,18 @@
 	<td class="hidden-xs"><%=convenio.denominacion%></td>
 
 		<%if convenio.tracings.blank? %>
-			<td class="hidden-xs hidden-sm hidden-md"></td>
+			<td class="hidden-xs hidden-sm"></td>
 		<%else%>	
 			<%@ultimomov=Tracing.where(agreement_id: convenio.id)%>
 			
-			<td class="hidden-xs hidden-sm hidden-md">
+			<td class="hidden-xs hidden-sm">
 			<%lastmov=@ultimomov.order('fecha').last%>
 			<%=lastmov.estado%>
 			<br>
 			(<%=lastmov.fecha.day%>/<%=lastmov.fecha.month%>/<%=lastmov.fecha.year%>)
 			</td>
 		<%end%>
-	<td class="hidden-xs hidden-sm hidden-md"><%=convenio.decreto%></td>
+	<td class="hidden-xs hidden-sm"><%=convenio.decreto%></td>
 </tr>	
 <%end%>
 </table>
