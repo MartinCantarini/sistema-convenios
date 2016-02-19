@@ -91,6 +91,7 @@ GEM
     paloma (4.2.1)
       jquery-rails
     pdf-core (0.6.0)
+    pg (0.18.3-x86-mingw32)
     prawn (2.0.2)
       pdf-core (~> 0.6.0)
       ttfunk (~> 1.4.0)
@@ -180,6 +181,7 @@ DEPENDENCIES
   kaminari
   mysql2 (>= 0.3.13, < 0.5)
   paloma
+  pg
   prawn (~> 2.0, >= 2.0.2)
   prawn-table
   rails (= 4.2.5)

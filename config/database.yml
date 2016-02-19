@@ -48,7 +48,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: sistconvenios_production
-  username: sistconvenios
-  password: <%= ENV['SISTCONVENIOS_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: my_production_database
+  pool: 5
+  timeout: 5000
