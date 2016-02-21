@@ -58,6 +58,7 @@ gem 'prawn-table'
 #Organize javascript
 gem 'paloma'
 gem 'activeadmin'
+gem 'meta_search'
 gem 'rails_12factor', group: :production
 
 ruby "2.1.5"
