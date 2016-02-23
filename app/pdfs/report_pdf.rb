@@ -1,7 +1,7 @@
 class ReportPdf < Prawn::Document
   def initialize(convenio, view)
     super()
-    logo
+    #logo
     move_down 30
     text "Convenio #{convenio.expediente}", :size => 25 , :style => :bold
     move_down 20
