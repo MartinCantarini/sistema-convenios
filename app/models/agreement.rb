@@ -5,6 +5,7 @@ class Agreement < ActiveRecord::Base
 	belongs_to :typeagreements
 	def self.search(search1,search2,search3,search4,search5)
 	#search1=fecha1;search2=fecha2;search3=expediente;search4=denominacion;search5=firmante;
+		search4=search4.upcase
 		search5=search5.upcase
 		if 	  !search1.blank? and !search2.blank? and !search3.blank? and !search4.blank? and !search5.blank?
 			  fecha1=search1.to_date

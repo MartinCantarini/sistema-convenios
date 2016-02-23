@@ -4,5 +4,5 @@ class ChangeTypeFechafirmaToAgreement < ActiveRecord::Migration
   end
   def down
     add_column :agreements, :fechadefirma, :date
-  end	
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160126124110) do
+ActiveRecord::Schema.define(version: 20160223134943) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160126124110) do
     t.datetime "updated_at",                        null: false
     t.string   "expediente",          limit: 255
     t.string   "contacto",            limit: 255
-    t.date     "fechadefirma"
     t.string   "compromisoeconomico", limit: 255
     t.string   "duracion",            limit: 255
     t.string   "estado",              limit: 255
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160126124110) do
     t.text     "objeto",              limit: 65535
     t.text     "observaciones",       limit: 65535
     t.string   "denominacion",        limit: 255
+    t.date     "fechadefirma"
   end
 
   create_table "otros", force: :cascade do |t|
