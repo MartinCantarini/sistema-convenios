@@ -2,13 +2,13 @@
   <div class="row">
   <div class="col-md-4"><%= f.text_field :expediente , required:"required", label:"Expediente*"%></div>
   <div class="col-md-4"><%= f.text_field :contacto , label:"Contacto"%></div>
-  <div class="col-md-4"><%= f.date_field :fechadefirma ,required:"required", label:"Fecha de firma"%></div>
+  <div class="col-md-4"><%= f.date_field :fechadefirma ,required:"required", label:"Fecha de firma*"%></div>
   <div class="col-md-4"><%= f.collection_select(:denominacion, Typeagreement.all, :denominacion, :denominacion)%></div>
   <div class="col-md-8"><%= f.text_area :objeto, label:"Objeto" %></div>
   <div class="col-md-4"><%= f.text_field :compromisoeconomico , label:"Compromiso económico"%></div>
   <div class="col-md-4"><%= f.text_field :duracion, label:"Duración" %></div>
   <div class="col-md-4"><%#= f.text_field :estado , label:"Estado"%></div>
-  <div class="col-md-4"><%= f.text_field :decreto , label:"Decreto"%></div>
+  <div class="col-md-4"><%= f.text_field :decreto , label:"Decreto/Resolución"%></div>
   <div class="col-md-8"><%= f.text_area :observaciones , label:"Observaciones"%></div>
   <div class="col-md-12"><center><%= f.submit "Agregar" %></center></div>
   </div>

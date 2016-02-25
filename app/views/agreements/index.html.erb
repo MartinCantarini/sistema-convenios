@@ -46,7 +46,7 @@
 	<th class="hidden-xs hidden-sm ">Fecha de firma</th>
 	<th class="hidden-xs">Denominación</th>
 	<th class="hidden-xs hidden-sm">Estado actual</th>
-	<th class="hidden-xs hidden-sm">Decreto</th>
+	<th class="hidden-xs hidden-sm">Decreto/Resolución</th>
 </tr>
 <%@convenios.all.each do |convenio|%>
 <tr>
@@ -55,7 +55,7 @@
 	<td>
 		<ul>
 		<%@firmas.each do |firma|%>
-			<%=firma.firmante%>(<%=firma.fecha%>)<br>
+			<%=firma.firmante%><br>
 		<%end%>
 		</ul>
 	</td>
@@ -70,8 +70,6 @@
 			<td class="hidden-xs hidden-sm">
 			<%lastmov=@ultimomov.order('fecha').last%>
 			<%=lastmov.estado%>
-			<br>
-			(<%=lastmov.fecha.day%>/<%=lastmov.fecha.month%>/<%=lastmov.fecha.year%>)
 			</td>
 		<%end%>
 	<td class="hidden-xs hidden-sm"><%=convenio.decreto%></td>
