@@ -2,6 +2,7 @@ class ReportPdf < Prawn::Document
   def initialize(convenio, view)
     super()
     #logo
+    text "Comisión de Investigaciones Científicas de la Provincia de Buenos Aires",:size=>10, :align => :right
     move_down 30
     text "Convenio #{convenio.expediente}", :size => 25 , :style => :bold
     move_down 20
@@ -50,7 +51,7 @@ class ReportPdf < Prawn::Document
   def tabla_firmantes(convenio)
     firmantes=Signature.getFirmantes(convenio.id)
     firmantes.all.each do |f|
-      text "-#{f.firmante}(#{f.fecha.day}/#{f.fecha.month}/#{f.fecha.year})", :size=>15
+      text "-#{f.firmante}", :size=>15
       move_down 15
     end 
   end
@@ -58,7 +59,7 @@ class ReportPdf < Prawn::Document
   def tabla_movimientos(convenio)
     movimientos=Tracing.getSeguimientos(convenio.id)
     movimientos.all.each do |m|
-      text "-#{m.estado}(#{m.fecha.day}/#{m.fecha.month}/#{m.fecha.year})", :size=>15
+      text "-#{m.estado}", :size=>15
       move_down 15
     end 
   end
